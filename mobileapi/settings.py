@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+#johnreactnative.pythonanywhere.com
 # Application definition
 
 INSTALLED_APPS = [
@@ -117,9 +117,16 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.1/howto/static-files/
-
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}
 
 
 STATIC_URL = '/static/'
@@ -135,8 +142,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 #medial such as image url settings
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = (
-    ''
+    
     'http://localhost:3000',
     'http://localhost:8000',
     'http://192.168.0.102:9000',
 )
+
+
+JWT_AUTH = {
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'mobileapi.utils.my_jwt_response_handler'
+}

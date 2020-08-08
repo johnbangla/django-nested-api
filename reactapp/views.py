@@ -3,10 +3,10 @@ from django.http import JsonResponse
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import AlbumSerializer
+from .serializers import AlbumSerializer,CategoryModelSerializer
 
 
-from .models import Album
+from .models import Album,CategoryModel
 # Create your views here.
 
 
@@ -14,6 +14,7 @@ from .models import Album
 def apiOverview(request):
     api_urls = {
         'List': '/listings/',
+        'Category': '/categories/',
         'Detail View': '/task-detail/<str:pk>/',
         'Create': '/task-create/',
         'Update': '/task-update/<str:pk>/',
@@ -27,6 +28,13 @@ def apiOverview(request):
 def taskList(request):
     tasks = Album.objects.all().order_by('-id')
     serializer = AlbumSerializer(tasks, many=True)
+    return Response(serializer.data)
+
+#categories
+@api_view(['GET'])
+def categoryList(request):
+    tasks = CategoryModel.objects.all().order_by('-id')
+    serializer = CategoryModelSerializer(tasks, many=True)
     return Response(serializer.data)
 
 

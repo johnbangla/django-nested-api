@@ -4,6 +4,16 @@ from django.db import models
 # title images( url thumbnailUrl) price categoryId userId location (latitude longitude)
 #    image = models.ImageField(blank=True,null=True)
 
+class CategoryModel(models.Model):
+    id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=100)
+    icon = models.CharField(max_length=100)
+    backgroundColor = models.CharField(max_length=100)
+    color = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.name
+    
 
 class Album(models.Model):
     id = models.IntegerField(primary_key=True)

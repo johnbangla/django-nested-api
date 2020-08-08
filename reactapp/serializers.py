@@ -1,7 +1,13 @@
 from rest_framework import serializers
-from .models import Task, Album, IImage, Location
+from .models import Task, Album, IImage, Location,CategoryModel
 
 
+
+class CategoryModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CategoryModel
+        fields = '__all__'
+        
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
