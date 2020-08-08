@@ -17,7 +17,7 @@ class LocationSerializer(serializers.ModelSerializer):
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = IImage
-        fields = ['url', 'thumbnailUrl']
+        fields = ['url', 'thumbnailUrl', 'aimage', 'bimage']
 
 
 class AlbumSerializer(serializers.ModelSerializer):
@@ -26,7 +26,7 @@ class AlbumSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Album
-        fields = ['id','title', 'images', 'price',
+        fields = ['id', 'title', 'images', 'price',
                   'categoryId', 'userId', 'locations']
 
     def create(self, validated_data):

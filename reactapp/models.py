@@ -16,12 +16,13 @@ class Album(models.Model):
         return self.title
 
 
-    
 class IImage(models.Model):
     album = models.ForeignKey(
         Album, related_name='images', on_delete=models.CASCADE)
     url = models.CharField(max_length=300)
     thumbnailUrl = models.CharField(max_length=300)
+    aimage = models.ImageField(upload_to='photos', default='default.jpg')
+    bimage = models.ImageField(upload_to='photos', default='default.jpg')
 
     def __str__(self):
         return self.url
