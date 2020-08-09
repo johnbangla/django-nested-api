@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from rest_framework_jwt.views import obtain_jwt_token
+#from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
 	path('', views.apiOverview, name="api-overview"),
@@ -11,5 +11,5 @@ urlpatterns = [
 
 	path('task-update/<str:pk>/', views.taskUpdate, name="task-update"),
 	path('task-delete/<str:pk>/', views.taskDelete, name="task-delete"),
-  	path('auth/', obtain_jwt_token),
+  #	path('auth/', obtain_jwt_token),
 ]
