@@ -25,9 +25,9 @@ SECRET_KEY = 'lcoonb-+buh@(n2umo9t%7a+njucceme)ujspc7%%pzgqlxce('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['johnreactnative.pythonanywhere.com']
 
-#johnreactnative.pythonanywhere.com
+# johnreactnative.pythonanywhere.com
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,9 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-   
-      'reactapp',
-      'rest_framework', 'corsheaders',
+
+    'reactapp',
+    'rest_framework', 'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -119,30 +119,29 @@ USE_TZ = True
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+        # 'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
     ),
 }
 
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-STATIC_ROOT =  os.path.join(BASE_DIR,'assets') 
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
-
-#medial such as image url settings
+# medial such as image url settings
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = (
-    
+    'johnreactnative.pythonanywhere.com',
     'http://localhost:3000',
     'http://localhost:8000',
     'http://192.168.0.102:9000',
@@ -150,5 +149,5 @@ CORS_ORIGIN_WHITELIST = (
 
 
 JWT_AUTH = {
-    'JWT_RESPONSE_PAYLOAD_HANDLER': 'mobileapi.utils.my_jwt_response_handler'
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'mobileapi.utils.john'
 }

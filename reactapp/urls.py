@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import RegisterAPI
 #from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
@@ -11,5 +12,7 @@ urlpatterns = [
 
 	path('task-update/<str:pk>/', views.taskUpdate, name="task-update"),
 	path('task-delete/<str:pk>/', views.taskDelete, name="task-delete"),
+ 	path('register/', RegisterAPI.as_view(), name='register'),
+    
   #	path('auth/', obtain_jwt_token),
 ]
