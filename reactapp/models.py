@@ -48,6 +48,10 @@ class Location(models.Model):
 class Task(models.Model):
     title = models.CharField(max_length=200)
     completed = models.BooleanField(default=False, blank=True, null=True)
+    aimage = models.ImageField(upload_to='photos', default='default.jpg')
+    price = models.IntegerField(default=100,blank=True, null=True)
+    category = models.IntegerField(default=2,blank=True, null=True)
+    
 
     def __str__(self):
         return self.title

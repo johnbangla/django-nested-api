@@ -25,7 +25,7 @@ SECRET_KEY = 'lcoonb-+buh@(n2umo9t%7a+njucceme)ujspc7%%pzgqlxce('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['johnreactnative.pythonanywhere.com']
+ALLOWED_HOSTS = []
 
 # johnreactnative.pythonanywhere.com
 # Application definition
@@ -141,7 +141,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # medial such as image url settings
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ORIGIN_WHITELIST = (
-    'johnreactnative.pythonanywhere.com',
+    # 'johnreactnative.pythonanywhere.com',
     'http://localhost:3000',
     'http://localhost:8000',
     'http://192.168.0.102:9000',
