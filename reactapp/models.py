@@ -1,8 +1,22 @@
 from django.db import models
 
-# Create your models here.
-# title images( url thumbnailUrl) price categoryId userId location (latitude longitude)
-#    image = models.ImageField(blank=True,null=True)
+
+class Parent(models.Model):
+    name = models.CharField(max_length=100,blank=True,null=True)
+    
+    def __str__(self):
+        return self.name
+    
+class Children(models.Model):
+   parent = models.ForeignKey(
+        Parent, related_name='parents', on_delete=models.CASCADE)
+   mobile = models.CharField(max_length=100,blank=True,null=True)
+   def __str__(self):
+        return self.mobile
+   
+   
+   
+   
 
 class CategoryModel(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -29,8 +43,8 @@ class Album(models.Model):
 class IImage(models.Model):
     album = models.ForeignKey(
         Album, related_name='images', on_delete=models.CASCADE)
-    url = models.CharField(max_length=300)
-    thumbnailUrl = models.CharField(max_length=300)
+    url = models.CharField(max_length=300,null=True,blank=True)
+    thumbnailUrl = models.CharField(max_length=300,null=True,blank=True)
     aimage = models.ImageField(upload_to='photos', default='default.jpg')
     bimage = models.ImageField(upload_to='photos', default='default.jpg')
 
@@ -51,6 +65,7 @@ class Task(models.Model):
     aimage = models.ImageField(upload_to='photos', default='default.jpg')
     price = models.IntegerField(default=100,blank=True, null=True)
     category = models.IntegerField(default=2,blank=True, null=True)
+    description = models.TextField(null=True,blank=True)
     
 
     def __str__(self):

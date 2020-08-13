@@ -1,7 +1,38 @@
 from rest_framework import serializers
-from .models import Task, Album, IImage, Location,CategoryModel
+from .models import Task, Album, IImage, Location,CategoryModel,Parent,Children
 from django.contrib.auth.models import User
 
+
+#test serilizer
+
+
+
+
+
+
+
+class ChildSerializer(serializers.ModelSerializer):
+   
+
+    class Meta:
+        model = Children
+        fields = ['mobile']
+
+
+class TestSerializer(serializers.ModelSerializer):
+    mobiles = ChildSerializer(many=True)
+
+    class Meta:
+        model = Parent
+        fields = ['name', 'mobiles']
+        
+        def create(self, validated_data):
+            Children.objects.create(mobiles=Children, **track_data)
+          
+   
+
+
+#serilizer
 
 class CategoryModelSerializer(serializers.ModelSerializer):
     class Meta:
@@ -27,8 +58,8 @@ class ImageSerializer(serializers.ModelSerializer):
 
 
 class AlbumSerializer(serializers.ModelSerializer):
-    images = ImageSerializer(many=True, read_only=True)
-    locations = LocationSerializer(many=True, read_only=True)
+    images = ImageSerializer(many=True)
+    locations = LocationSerializer(many=True)
 
     class Meta:
         model = Album

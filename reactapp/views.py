@@ -3,10 +3,10 @@ from django.http import JsonResponse
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import AlbumSerializer,CategoryModelSerializer,TaskSerializer
+from .serializers import AlbumSerializer,CategoryModelSerializer,TaskSerializer,TestSerializer
 
 
-from .models import Album,CategoryModel,Task
+from .models import Album,CategoryModel,Task,Parent,Children
 
 #for registration 
 from rest_framework import generics, permissions
@@ -27,6 +27,7 @@ def apiOverview(request):
         'Update': '/task-update/<str:pk>/',
         'Delete': '/task-delete/<str:pk>/',
         'Createplz': '/add-plz/',
+        'Testplz': '/test/',
     }
 
     return Response(api_urls)
@@ -62,7 +63,19 @@ def taskCreate(request):
 
     return Response(serializer.data)
 
+#test api
 
+@api_view(['POST'])
+def testCreate(request):
+    serializer = TestSerializer(data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
+
+
+#testapi
 @api_view(['POST'])
 def addPlz(request):
     serializer = TaskSerializer(data=request.data)
