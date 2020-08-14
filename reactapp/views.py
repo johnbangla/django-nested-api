@@ -6,13 +6,13 @@ from rest_framework.response import Response
 from .serializers import AlbumSerializer,CategoryModelSerializer,TaskSerializer,TestSerializer
 
 
-from .models import Album,CategoryModel,Task,Parent,Children
+from .models import Album,CategoryModel,Task,Parent,Children,Msg
 
 #for registration 
 from rest_framework import generics, permissions
 
 # from knox.models import AuthToken
-from .serializers import UserSerializer, RegisterSerializer
+from .serializers import UserSerializer, RegisterSerializer,MsgSerializer
 
 # Create your views here.
 
@@ -21,6 +21,7 @@ from .serializers import UserSerializer, RegisterSerializer
 def apiOverview(request):
     api_urls = {
         'List': '/listings/',
+        'Msg': '/tmthmessages/',
         'Category': '/categories/',
         'Detail View': '/task-detail/<str:pk>/',
         'Create': '/task-create/',
@@ -31,6 +32,15 @@ def apiOverview(request):
     }
 
     return Response(api_urls)
+
+
+#this is for sending dynamic messages
+@api_view(['GET'])
+def msgList(request):
+    tasks = Msg.objects.all().order_by('-id')
+    serializer = MsgSerializer(tasks, many=True)
+    return Response(serializer.data)
+
 
 
 @api_view(['GET'])

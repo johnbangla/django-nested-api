@@ -70,6 +70,23 @@ class Task(models.Model):
 
     def __str__(self):
         return self.title
+    
+    
+    
+#this a message model Api
+class Msg(models.Model):
+    id = models.IntegerField(primary_key=True)
+    title = models.CharField(max_length=200)
+    description = models.TextField(null=True,blank=True)
+    
+    completed = models.BooleanField(default=False, blank=True, null=True)
+    aimage = models.ImageField(upload_to='photos', default='default.jpg')
+
+    
+    
+
+    def __str__(self):
+        return self.title    
 
 
 class Category(models.Model):

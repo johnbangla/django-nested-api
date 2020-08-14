@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Task, Album, IImage, Location,CategoryModel,Parent,Children
+from .models import Task, Album, IImage, Location,CategoryModel,Parent,Children,Msg
 from django.contrib.auth.models import User
 
 
@@ -43,6 +43,12 @@ class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = '__all__'
+        
+#This is for dynamic messages
+class MsgSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Msg
+        fields = '__all__'        
 
 
 class LocationSerializer(serializers.ModelSerializer):

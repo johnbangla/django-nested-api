@@ -6,6 +6,8 @@ from .views import RegisterAPI
 urlpatterns = [
 	path('', views.apiOverview, name="api-overview"),
 	path('listings/', views.taskList, name="listings"),
+ 
+    path('tmthmessages/', views.msgList, name="messages"),
     path('categories/', views.categoryList, name="categories"),
 	path('task-detail/<str:pk>/', views.taskDetail, name="task-detail"),
 	path('task-create/', views.taskCreate, name="task-create"),
