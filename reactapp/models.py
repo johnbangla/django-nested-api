@@ -66,6 +66,8 @@ class Task(models.Model):
     price = models.IntegerField(default=100,blank=True, null=True)
     category = models.IntegerField(default=2,blank=True, null=True)
     description = models.TextField(null=True,blank=True)
+    latitude = models.CharField(max_length=100,default='0',blank=True,null=True)
+    longitude = models.CharField(max_length=100,default='0',blank=True,null=True)
     
 
     def __str__(self):
