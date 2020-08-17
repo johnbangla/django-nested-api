@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Task, Album, IImage, Location,CategoryModel,Parent,Children,Msg
+from .models import Task, Album, IImage, Location,Payment,Other,CategoryModel,Parent,Children,Msg
 from django.contrib.auth.models import User
 
 
@@ -56,7 +56,16 @@ class LocationSerializer(serializers.ModelSerializer):
         model = Location
         fields = ['latitude', 'longitude']
 
+class PaymentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Payment
+        fields = [ 'payment1','payment2','payment3','payment4','payment5', 'payment6','payment7','payment8']
 
+class OtherSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Other
+        fields = '__all__'    
+            
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = IImage
@@ -66,22 +75,34 @@ class ImageSerializer(serializers.ModelSerializer):
 class AlbumSerializer(serializers.ModelSerializer):
     images = ImageSerializer(many=True)
     locations = LocationSerializer(many=True)
+    payments = PaymentSerializer(many=True)
+    others = OtherSerializer(many=True)
 
     class Meta:
         model = Album
         fields = ['id', 'title', 'images', 'price',
-                  'categoryId', 'userId', 'locations']
+                  'categoryId', 'userId', 'locations','payments','others']
 
     def create(self, validated_data):
         tracks_data = validated_data.pop('images')
         tracks_data2 = validated_data.pop('locations')
+        tracks_data3 = validated_data.pop('payments')
+        tracks_data4 = validated_data.pop('others')
 
         album = Album.objects.create(**validated_data)
+        
         for track_data in tracks_data:
             IImage.objects.create(album=album, **track_data)
 
         for track_datae in tracks_data2:
             Location.objects.create(album=album, **track_datae)
+        
+        for track_datae in tracks_data3:
+            Payment.objects.create(album=album, **track_datae)
+        
+        for track_datae in tracks_data4:
+            Other.objects.create(album=album, **track_datae)
+        
         return album
 
 

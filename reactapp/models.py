@@ -31,7 +31,7 @@ class CategoryModel(models.Model):
 
 class Album(models.Model):
     id = models.IntegerField(primary_key=True)
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=4000)
     price = models.IntegerField(default=10)
     categoryId = models.IntegerField(default=1)
     userId = models.IntegerField(default=1)
@@ -58,6 +58,30 @@ class Location(models.Model):
     latitude = models.IntegerField(default=1)
     longitude = models.IntegerField(default=2)
 
+class Payment (models.Model):
+    album = models.ForeignKey(
+        Album, related_name='payments', on_delete=models.CASCADE)
+    payment1 = models.CharField(max_length=300,blank=True,null=True,default="Bkash")
+    payment2 = models.CharField(max_length=300,blank=True,null=True,default="Nagad")
+    payment3 = models.CharField(max_length=300,blank=True,null=True,default="Rocket")
+    payment4 = models.CharField(max_length=300,blank=True,null=True,default="Bank1")
+    payment5 = models.CharField(max_length=300,blank=True,null=True,default="Bank2")
+    payment6 = models.CharField(max_length=300,blank=True,null=True,default="Bank3")
+    payment7 = models.CharField(max_length=300,blank=True,null=True,default="Bank4")
+    payment8 = models.CharField(max_length=300,blank=True,null=True,default="others")
+    
+class Other (models.Model):
+    album = models.ForeignKey(
+        Album, related_name='others', on_delete=models.CASCADE)
+    other1 = models.CharField(max_length=100,blank=True,null=True,default="some")
+    other2 = models.CharField(max_length=100,blank=True,null=True,default="some")
+    other3 = models.CharField(max_length=100,blank=True,null=True,default="some")
+    other4 = models.CharField(max_length=100,blank=True,null=True,default="some")
+    other5 = models.CharField(max_length=100,blank=True,null=True,default="some")
+    other6 = models.CharField(max_length=100,blank=True,null=True,default="some")
+    other7 = models.CharField(max_length=100,blank=True,null=True,default="some")
+    other8 = models.CharField(max_length=100,blank=True,null=True,default="some")
+    
 
 class Task(models.Model):
     title = models.CharField(max_length=200)

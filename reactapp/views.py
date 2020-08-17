@@ -42,7 +42,7 @@ def msgList(request):
     return Response(serializer.data)
 
 
-
+#Fething complex data for mobile 
 @api_view(['GET'])
 def taskList(request):
     tasks = Album.objects.all().order_by('-id')
